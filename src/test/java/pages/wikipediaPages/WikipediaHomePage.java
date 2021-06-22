@@ -50,9 +50,12 @@ public class WikipediaHomePage extends BasePage {
     };
 
     public int pictureWidthAShot() throws IOException {
+//        File screen = null;
         waitForElementVisibility(imageForAShot);
-        Screenshot secondPictureInDidYouKnow = new AShot().shootingStrategy(ShootingStrategies.viewportPasting(2000)).takeScreenshot(driver, imageForAShot);
+        Screenshot secondPictureInDidYouKnow = new AShot().shootingStrategy(ShootingStrategies.viewportPasting(3000)).takeScreenshot(driver, imageForAShot);
         ImageIO.write(secondPictureInDidYouKnow.getImage(), "png", new File("target\\pictures\\DidYouKnowPic2.png"));
+//        ImageIO.write(secondPictureInDidYouKnow.getImage(), "png", screen);
+//        FileUtils.copyFile(screen, new File("target\\pictures\\DidYouKnowPic2.png"));
 
         return secondPictureInDidYouKnow.getImage().getWidth();
     };
