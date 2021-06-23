@@ -44,18 +44,18 @@ public class WikipediaHomePage extends BasePage {
         BufferedImage img = ImageIO.read(screen);
         BufferedImage destination = img.getSubimage(point.getX(), point.getY(), imageForStandardScreenshot.getSize().getWidth(), imageForStandardScreenshot.getSize().getHeight());
         ImageIO.write(destination, "png", screen);
-        FileUtils.copyFile(screen, new File("target\\pictures\\DidYouKnowPic1.png"));
+        FileUtils.copyFile(screen, new File("target/pictures/DidYouKnowPic1.png"));
 
         return  imageForStandardScreenshot.getSize().getHeight();
     };
 
     public int pictureWidthAShot() throws IOException {
-//        File screen = null;
+        File screen = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         waitForElementVisibility(imageForAShot);
-        Screenshot secondPictureInDidYouKnow = new AShot().shootingStrategy(ShootingStrategies.viewportPasting(3000)).takeScreenshot(driver, imageForAShot);
-        ImageIO.write(secondPictureInDidYouKnow.getImage(), "png", new File("target\\pictures\\DidYouKnowPic2.png"));
-//        ImageIO.write(secondPictureInDidYouKnow.getImage(), "png", screen);
-//        FileUtils.copyFile(screen, new File("target\\pictures\\DidYouKnowPic2.png"));
+        Screenshot secondPictureInDidYouKnow = new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000)).takeScreenshot(driver, imageForAShot);
+//        ImageIO.write(secondPictureInDidYouKnow.getImage(), "png", new File(System.getProperty("user.dir") + "target/pictures/DidYouKnowPic2.png"));
+        ImageIO.write(secondPictureInDidYouKnow.getImage(), "png", screen);
+        FileUtils.copyFile(screen, new File("target/pictures/DidYouKnowPic2.png"));
 
         return secondPictureInDidYouKnow.getImage().getWidth();
     };
